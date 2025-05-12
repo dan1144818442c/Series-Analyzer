@@ -1,0 +1,2 @@
+# Series-Analyzer
+Class project
