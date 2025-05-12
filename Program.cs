@@ -10,6 +10,7 @@ namespace _12_5_25
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("num 1");
         }
     }
 }
