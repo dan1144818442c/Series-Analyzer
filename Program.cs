@@ -197,7 +197,7 @@ namespace _12_5_25
 
             int GetMax(int[] arr)
             {
-                int max = 0;
+                int max = arr[0];
                 foreach (int item in arr)
                 {
                     if (item > max)
