@@ -1,1 +1,61 @@
-.vs/ 
+## Build results
+bin/
+obj/
+[Ll]og/
+*.log
+
+## User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sdf
+*.cache
+*.dbmdl
+
+## Visual Studio Code
+.vscode/
+
+## Rider
+.idea/
+
+## OS generated files
+.DS_Store
+Thumbs.db
+
+## Dotnet environment files
+*.dotCover
+*.ncrunch*
+*.vs/
+*.env
+
+## NuGet
+*.nupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Compiled files
+*.dll
+*.exe
+*.pdb
+*.cache
+*.zip
+
+## Publish
+publish/
+
+## Backup & temp files
+*.bak
+*.tmp
+~$*
+
+## Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+## Auto-generated files
+Generated_Code/
