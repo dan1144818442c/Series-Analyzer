@@ -147,7 +147,7 @@ namespace _12_5_25
                     revers[index_list] = item;
                     index_list--;
                 }
-                printList(revers);
+                PrintList(revers);
             }
 
             int[] From_string_to_int(string[] arr)
@@ -191,7 +191,7 @@ namespace _12_5_25
             void ShowSorted(string[] arr)
             {
                 int[] sort_arr = bubbleSort(arr);
-                printList(sort_arr);
+                PrintList(sort_arr);
             }
 
 
@@ -252,7 +252,7 @@ namespace _12_5_25
                 return counter;
             }
 
-            void printList<T>(IEnumerable<T> arry)
+            void PrintList<T>(IEnumerable<T> arry)
             {
                 foreach (var item in arry)
                 {
@@ -282,7 +282,7 @@ namespace _12_5_25
                             break;
 
                         case "b":
-                            printList(arry);
+                            PrintList(arry);
                             break;
                         case "c":
                             ShowReversed(arry);
