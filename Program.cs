@@ -13,6 +13,7 @@ namespace _12_5_25
         {
             (string[], bool) chek_list(string[] list)
             {
+
                 if (list.Length >= 3)
                 {
                     foreach (var arg in list)
@@ -26,13 +27,28 @@ namespace _12_5_25
                         {
                             return (list, false);
                         }
+
                     }
+
                     return (list, true);
 
                 }
                 return (list, false);
 
 
+            }
+            string Rremove_LastFirst_Sep(string str)
+            {
+                if (str[str.Length - 1] == ',')
+                {
+                    str = str.Substring(0, str.Length - 1);
+
+                }
+                if (str[0] == ',')
+                {
+                    str = str.Substring(1);
+                }
+                return str;
             }
 
             bool chekStringIfDigit(string word)
@@ -47,6 +63,7 @@ namespace _12_5_25
                 return true;
 
             }
+
             bool chekStringNumIfPos(string word)
             {
                 if (int.Parse(word) < 0)
@@ -69,8 +86,12 @@ namespace _12_5_25
                 string[] list_input;
                 do
                 {
-                    Console.WriteLine("Please enter a list");
-                    list_input = Console.ReadLine().Split(',');
+                    Console.WriteLine("Please enter a list of (positive) numbers of at least three numbers (the rest are separated by commas)");
+                    string string_input = Console.ReadLine();
+
+                    string_input = Rremove_LastFirst_Sep(string_input);
+
+                    list_input = string_input.Split(',');
                     (string[] list, bool good_list) = chek_list(list_input);
                     is_good_list = good_list;
                 }
@@ -115,13 +136,7 @@ namespace _12_5_25
 
             }
 
-            void ShowSeries(string[] list)
-            {
-                foreach (string item in list)
-                {
-                    Console.Write(item + " , ");
-                }
-            }
+       
 
             void ShowReversed(string[] list)
             {
@@ -132,10 +147,7 @@ namespace _12_5_25
                     revers[index_list] = item;
                     index_list--;
                 }
-                foreach (string item in revers)
-                {
-                    Console.WriteLine(item);
-                }
+                printList(revers);
             }
 
             int[] From_string_to_int(string[] arr)
@@ -179,10 +191,7 @@ namespace _12_5_25
             void ShowSorted(string[] arr)
             {
                 int[] sort_arr = bubbleSort(arr);
-                foreach (var item in sort_arr)
-                {
-                    Console.Write(item + " , ");
-                }
+                printList(sort_arr);
             }
 
 
@@ -200,6 +209,7 @@ namespace _12_5_25
                 return max;
 
             }
+
             int GetMin(int[] arr)
             {
                 int min = arr[0];
@@ -225,53 +235,90 @@ namespace _12_5_25
                 return sum;
             }
 
-            int GetAverage(int[] arr)
+            double GetAverage(int[] arr)
             {
                 int sum = GetSum(arr);
-                return sum / arr.Length;
+                return ((double)sum / arr.Length);
 
             }
 
-            int getLength(int[] arr)
+            int GetLength(int[] arr)
             {
-                return arr.Length;
+                int counter = 0;
+                foreach (int item in arr)
+                {
+                    counter++;
+                }
+                return counter;
+            }
+
+            void printList<T>(IEnumerable<T> arry)
+            {
+                foreach (var item in arry)
+                {
+                    Console.Write(item + " ");
+                }
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-            (string[] arry, bool succses) = TryGetSeriesFromArgs();
-            //Console.WriteLine(arry);
-            //Console.WriteLine(typeof(arry));
-            //Console.WriteLine(succses);
-            if (!succses)
+            void menu()
             {
-                arry = GetSeriesFromUser();
-            }
-            ShowMenu();
-            string choice1 = GetUserChoice();
+                (string[] arry, bool succses) = TryGetSeriesFromArgs();
 
-            switch (choice1)
-            {
-                case "a":
+                if (!succses)
+                {
                     arry = GetSeriesFromUser();
-                    break;
+                }
+                string choice1 = " ";
+                while (choice1 != "exit")
+                {
+                    ShowMenu();
+                    choice1 = GetUserChoice();
+                    int[] int_arry = From_string_to_int(arry);
+                    switch (choice1)
+                    {
+                        case "a":
+                            arry = GetSeriesFromUser();
+                            break;
+
+                        case "b":
+                            printList(arry);
+                            break;
+                        case "c":
+                            ShowReversed(arry);
+                            break;
+                        case "d":
+                            ShowSorted(arry);
+                            break;
+
+                        case "e":
+                            Console.WriteLine(GetMax(int_arry));
+                            break;
+                        case "f":
+                            Console.WriteLine(GetMin(int_arry));
+                            break;
+                        case "g":
+                            Console.WriteLine(GetAverage(int_arry));
+                            break;
+                        case "h":
+                            Console.WriteLine(GetLength(int_arry));
+                            break;
+                        case "i":
+                            Console.WriteLine(GetSum(int_arry));
+                            break;
+                        case "j":
+                            choice1 = "exit";
+                            break;
+                    }
 
 
 
 
-
+                }
             }
 
-            }
+
+            menu();
         }
     }
+}
